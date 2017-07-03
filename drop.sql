@@ -1,0 +1,9 @@
+DROP TABLE item;
+DROP TABLE venda;
+DROP TABLE estoque;
+DROP TABLE entrada;
+DROP TABLE produto;
+DROP TABLE vendedor;
+DROP TABLE empresa;
+DROP TABLE login;
+DROP TABLE plano;
