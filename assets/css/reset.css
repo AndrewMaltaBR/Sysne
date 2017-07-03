@@ -1,0 +1,13 @@
+* {
+  font-family: Verdana,Geneva,sans-serif;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(235, 235, 235);
+}
