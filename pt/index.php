@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../assets/img/SysneDarkLogo.png" />
-    <title>Sysne - Estatísticas</title>
+    <title>Sysne - </title>
     
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -22,10 +22,10 @@
     </header>
 
     <nav class="nav">
-      <a page="estatisticas"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;Estatísticas</a>
-      <a page="estoque"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;&nbsp;Estoque</a>
-      <a page="vendedores"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Vendedores</a>
-      <a page="vendas"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Vendas</a>
+      <a class="unselectable" page="estatisticas"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;&nbsp;Estatísticas</a>
+      <a class="unselectable" page="estoque"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;&nbsp;Estoque</a>
+      <a class="unselectable" page="vendedores"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Vendedores</a>
+      <a class="unselectable" page="vendas"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Vendas</a>
     </nav>
 
     <main class="main">
