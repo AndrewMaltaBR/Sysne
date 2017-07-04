@@ -1,10 +1,10 @@
 :root {
-  --red: rgb(219, 86, 86);
-  --blue: rgb(78, 128, 226);
-  --dark-blue: rgb(39, 64, 114);
-  --light-font: rgb(250, 250, 250);
-  --middle-font: rgb(161, 157, 157);
-  --dark-font: rgb(36, 36, 36);
+  --red: #DB5656;
+  --blue: #4E80E2 ;
+  --dark-blue: #274072;
+  --light-font: #FAFAFA;
+  --middle-font: #A19D9D;
+  --dark-font: #242424;
 }
 
 [back-color="red"] {
@@ -28,26 +28,102 @@
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 20px 30px;
+  padding: 5px 20px;
   font-size: 22px;
   box-shadow: 0px 2px 6px 0px rgba(0,0,0,.5);
+  z-index: 500;
 }
 
 .header  * {
   display: inline-block;
+  margin-top: 10px;
+  line-height: 30px;
 }
 
 .header .title {
   float: left;
 }
 
-/* content */
+.header .logo {
+  width: 50px;
+  height: 50px;
+  margin: 0 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+}
 
-.content {
-  width: 100%;
+.header .logo.dark {
+  background-image: url(../img/SysneDarkLogo.png);
+}
+
+.header .logo.light {
+  background-image: url(../img/SysneLightLogo.png);
+}
+
+/* nav */
+
+.btn-nav {
+  float: left;
+  margin: 0;
+  font-size: 0px;
+  cursor: pointer;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.nav {
+  border-right: 1px solid #CCCCCC;
+  position: fixed;
+  margin: 80px 0 10px 0;
+  height: calc(100% - 100px);
+  width: 250px;
+  font-size: 18px;
+  z-index: 400;
+  left: 0;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.nav.show {
+  left: 0;
+}
+
+.nav a {
+  display: block;
+  color: var(--dark-font);
+  margin: 0 5px;
+  padding: 15px 20px;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.nav a:hover {
+  background-color: rgba(0,0,0,.07);
+}
+
+/* main */
+
+.main {
+  width: calc(100% - 250px);
   margin-top: 100px;
   padding: 0 20px;
-  columns: 2;
+  float: right;
+  z-index: 100;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.main.show {
+  width: calc(100% - 250px);
+}
+
+.main .title {
+
 }
 
 /* card */
@@ -87,7 +163,7 @@ input {
   padding: 5px 10px;
   cursor: pointer;
   background-color: rgba(0,0,0,0);
-  border-radius: 2px;
+  border-radius: 1px;
   float: right;
   -webkit-transition: all 200ms ease-in-out;
   -moz-transition: all 200ms ease-in-out;
@@ -95,5 +171,22 @@ input {
 }
 
 .btn:hover {
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0,0,0,.2);
+}
+
+/* responsive mods */
+
+@media only screen and (max-width: 750px) {
+  .nav {
+    left: -250px;
+  }
+
+  .btn-nav {
+    margin: 0 30px 0 0;
+    font-size: 30px;
+  }
+
+  .main {
+    width: 100%;
+  }
 }
