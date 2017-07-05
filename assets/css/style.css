@@ -1,4 +1,5 @@
 @import url(reset.css);
+@import url(basic.css);
 
 /* header */
 
@@ -101,6 +102,10 @@
   transition: all 300ms ease-in-out;
 }
 
+.main.without-nav {
+  width: 100%;
+}
+
 .main.show {
   width: calc(100% - 250px);
 }
@@ -158,11 +163,45 @@
 /* form */
 
 input {
+  display: inline-block;
   border-bottom: 1px solid rgb(200,200,200);
-  font-size: 16px;
+  font-size: 18px;
   padding: 5px 5px;
   width: 100%;
   margin-bottom: 10px;
+}
+
+/* table */
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  display: table;
+  table-layout: auto;
+}
+
+.table thead {
+  background-color: var(--blue);
+  color: var(--light-font);
+  width: 100%;
+}
+
+.table tr {
+  width: 100%;
+}
+
+.table:not(.invert) tr:nth-child(even) {
+  background-color: var(--light-font);
+}
+
+.table td,.table th {
+  text-align: left;
+  padding: 8px;
+  display: table-cell;
+}
+
+.table.invert tr:nth-child(even) {
+  background-color: var(--light-font);
 }
 
 /* responsive mods */

@@ -18,8 +18,8 @@
       <div class="logo"></div>
       <div class="title">Sysne</div>
       <div class="options pull-right">
-        <a href="#" class="btn">Login</a>
-        <a href="#" class="btn secondary">Cadastre-se</a>
+        <a href="login.php" class="btn">Login</a>
+        <a href="cadastro.php" class="btn secondary">Cadastre-se</a>
       </div>
     </header>
 
@@ -28,7 +28,8 @@
         <div class="image invert col-3" style="background-image: url('../assets/img/vendas.jpeg');">
           <div class="box">
             Gerencie seu negócio de qualquer lugar com Sysne, o mais novo assistente de vendas e estoque!<br/>
-            <button class="btn primary big" back-color="red" style="margin-top: 40px">Cadastre-se agora!</button></div>
+            <a href="cadastro.php" class="btn primary big" back-color="red" style="margin-top: 40px">Cadastre-se agora!</a>
+          </div>
         </div>
         
       </section>
@@ -37,6 +38,6 @@
       </section>
     </main>
 
-    <script type="text/javascript" src="../assets/js/dashboard.js"></script>
+    <script type="text/javascript" src="../assets/js/exclusive/dashboard.js"></script>
   </body>
 </html>

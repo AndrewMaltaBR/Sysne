@@ -16,5 +16,5 @@
 	   }
 	}
 
-	header("Location: http://localhost/sysne/$choice/");
+	header("Location: $choice/");
 ?>
