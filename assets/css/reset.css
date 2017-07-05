@@ -12,3 +12,121 @@
 body {
   background-color: rgb(235, 235, 235);
 }
+
+:root {
+  --red: #DB5656;
+  --dark-red: #B94848;
+  --blue: #35579A;
+  --dark-blue: #274072;
+  --light-font: #FAFAFA;
+  --middle-font: #A19D9D;
+  --dark-font: #242424;
+}
+
+[back-color="red"] {
+  background-color: var(--red);
+  color: var(--light-font);
+}
+
+[back-color="blue"] {
+  background-color: var(--blue);
+  color: var(--light-font);
+}
+
+[back-color="dark-blue"] {
+  background-color: var(--dark-blue);
+  color: var(--light-font);
+}
+
+.unselectable {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+/* col */
+
+.col-1 {columns: 1}
+.col-2 {columns: 2}
+.col-3 {columns: 3}
+.col-4 {columns: 4}
+.col-5 {columns: 5}
+
+@media only screen and (max-width: 1180px) {
+	.col-2 {columns: 1}
+	.col-3 {columns: 2}
+	.col-4 {columns: 3}
+	.col-5 {columns: 4}
+}
+
+@media only screen and (max-width: 960px) {
+	.col-3 {columns: 1}
+	.col-4 {columns: 2}
+	.col-5 {columns: 3}
+}
+
+@media only screen and (max-width: 480px) {
+	.col-4 {columns: 1}
+	.col-5 {columns: 2}
+}
+
+/* pull */
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+/* btn */
+
+.btn {
+  font-size: inherit;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: inherit;
+  font-size: 20px;
+  background-color: rgba(0,0,0,0);
+  border-radius: 1px;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+
+.big {
+  font-size: 36px;
+}
+
+.btn:hover {
+  background-color: rgba(0,0,0,.2);
+}
+
+.btn.primary {
+  background-color: var(--dark-blue);
+  color: var(--light-font);
+}
+
+.btn.primary:hover {
+  background-color: var(--blue);
+}
+
+.btn.secondary {
+	background-color: var(--red);
+    color: var(--light-font);
+}
+
+.btn.secondary:hover {
+  background-color: var(--dark-red);
+}
+
+/* header */
+
+.nav .options {
+	margin: 0;
+	margin-top: -20px;
+}

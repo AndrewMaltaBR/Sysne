@@ -1,5 +1,5 @@
 <h2 class="title"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;&nbsp;Estoque</h2>
-<article class="content products">
+<article class="content col-4">
   <section class="card product">
     <div class="title">Kiwi verde</div>
     <div class="image" style="background-image: url('../assets/img/kiwi.jpg');"></div>

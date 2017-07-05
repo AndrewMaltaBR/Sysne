@@ -1,34 +1,4 @@
-:root {
-  --red: #DB5656;
-  --blue: #4E80E2 ;
-  --dark-blue: #274072;
-  --light-font: #FAFAFA;
-  --middle-font: #A19D9D;
-  --dark-font: #242424;
-}
-
-[back-color="red"] {
-  background-color: var(--red);
-  color: var(--light-font);
-}
-
-[back-color="blue"] {
-  background-color: var(--blue);
-  color: var(--light-font);
-}
-
-[back-color="dark-blue"] {
-  background-color: var(--dark-blue);
-  color: var(--light-font);
-}
-
-.unselectable {
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-}
+@import url(reset.css);
 
 /* header */
 
@@ -143,30 +113,8 @@
 
 /* content */
 
-.content {
-
-}
-
-.content.products {
-  columns: 4;
-}
-
-@media only screen and (max-width: 1180px) {
-  .content.products {
-    columns: 3;
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .content.products {
-    columns: 2;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .content.products {
-    columns: 1;
-  }
+.content * {
+  display: inline-block;
 }
 
 /* card */
@@ -215,24 +163,6 @@ input {
   padding: 5px 5px;
   width: 100%;
   margin-bottom: 10px;
-}
-
-/* btn */
-
-.btn {
-  font-size: 16px;
-  padding: 5px 10px;
-  cursor: pointer;
-  background-color: rgba(0,0,0,0);
-  border-radius: 1px;
-  float: right;
-  -webkit-transition: all 200ms ease-in-out;
-  -moz-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
-}
-
-.btn:hover {
-  background-color: rgba(0,0,0,.2);
 }
 
 /* responsive mods */
