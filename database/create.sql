@@ -1,10 +1,22 @@
+DROP TABLE item;
+DROP TABLE venda;
+DROP TABLE estoque;
+DROP TABLE entrada;
+DROP TABLE produto;
+DROP TABLE vendedor;
+DROP TABLE empresa;
+DROP TABLE login;
+DROP TABLE plano;
+
 CREATE TABLE plano (
   id_plano INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  nome TEXT NOT NULL,
-  descricao TEXT NOT NULL,
+  pt_nome TEXT NOT NULL,
+  pt_descricao TEXT NOT NULL,
+  en_nome TEXT NOT NULL,
+  en_descricao TEXT NOT NULL,
   produtos INTEGER UNSIGNED NOT NULL,
   vendedores INTEGER UNSIGNED NOT NULL,
-  lang INTEGER UNSIGNED NOT NULL DEFAULT 0,
+  valor DECIMAL(9,2) NOT NULL,
   PRIMARY KEY(id_plano)
 );
 
@@ -32,7 +44,7 @@ CREATE TABLE vendedor (
   id_vendedor INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   id_login INTEGER UNSIGNED NOT NULL,
   id_empresa INTEGER UNSIGNED NOT NULL,
-  nome VARCHAR(50) NULL,
+  nome TEXT NOT NULL,
   PRIMARY KEY(id_vendedor),
   FOREIGN KEY (id_login)REFERENCES login(id_login),
   FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa)
