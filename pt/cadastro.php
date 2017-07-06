@@ -16,49 +16,32 @@
   <body style="background: url('../assets/img/vendas.jpeg') center / cover no-repeat fixed">
 
     <main class="main without-nav">
-      <form>
-        <section class="card col-2" style="padding: 20px;">
-          <table class="table invert">
-            <h2 class="title" style="text-align: center;">Escolha um plano</h2>
-            <thead>
-              <th id="pt_nome1">Gratuito</th>
-              <th id="pt_nome2">Professional</th>
-              <th id="pt_nome3">Enterprise</th>
-            </thead>
-            <tr>
-              <td id="pt_descricao1"></td>
-              <td id="pt_descricao2"></td>
-              <td id="pt_descricao3"></td>
-            </tr>
-            <tr>
-              <td id="produtos1"></td>
-              <td id="produtos2"></td>
-              <td id="produtos3"></td>
-            </tr>
-            <tr>
-              <td id="vendedores1"></td>
-              <td id="vendedores2"></td>
-              <td id="vendedores3"></td>
-            </tr>
-            <tr>
-              <td id="valor1"></td>
-              <td id="valor2"></td>
-              <td id="valor3"></td>
-            </tr>
-          </table>
-          <div class="">
-            <h2 class="title" style="text-align: center;">Dados de usuário</h2>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="text" name="username" placeholder="Nome de identificação" />
-            <input type="email" name="email" placeholder="Email de contato" />
-            <input type="password" name="senha1" placeholder="Digite sua senha" />
-            <input type="password" name="senha2" placeholder="Redigite sua senha" />
+      <div class="card" style="max-width:500px;margin: auto;display: block;padding: 30px;">
+        <h2 class="title" style="text-align: center; margin-bottom: 30px;">
+          <div style="max-width:100px;height:100px;margin:auto;">
+            <div class="logo dark" style="width:100%;height:100%;"></div>
           </div>
+          <p>Crie sua conta Sysne agora!</p>
+        </h2>
 
-        </section>
-      </form>
+        <form id="cadastro" method="post" action="">
+          <input type="hidden" name="class" value="empresa" />
+          <input type="hidden" name="method" value="insert" />
+
+          <input type="text" name="username" placeholder="Nome de usuário" required />
+          <input type="text" name="nome" placeholder="Nome de identificação" required />
+          <input type="email" name="email" placeholder="Email de contato" required />
+          <input type="password" name="senha" placeholder="Digite sua senha" required />
+          <input type="password" name="senha2" placeholder="Redigite sua senha" required />
+          <div style="max-width:220px;margin:auto;margin-top:20px;">
+            <button class="btn secondary" type="submit">Cadastrar</button>
+            <a href="login.php" class="btn" type="submit">Login</a>
+          </div>
+        </form>
+      </div>
     </main>
 
+    <script type="text/javascript" src="../assets/js/session.js"></script>
     <script type="text/javascript" src="../assets/js/exclusive/cadastro.js"></script>
   </body>
 </html>

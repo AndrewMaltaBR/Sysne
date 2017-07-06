@@ -1,4 +1,5 @@
 INSERT INTO plano VALUES
-	(1,'Gratuito','Utilize as principais funções sem pagar nada! Mas haverão restrições quantitativas','Free','Use the main functions without paying anything! But there will be quantitative restrictions',6,0,0),
-	(2,'Profissional','Ideal para empresa de pequeno e médio porte, possibilitando o gerenciamento de vários produtos e vendedores','Professional','Ideal for small or medium-sized businesses, allowing the management of various products and vendors',20,10,119),
-	(3,'Enterprise','Oferece recursos ilimitados para empresas que possuam grande volume de produtos e vendedores. Ideal para todas as empresas','Enterprise','It offers unlimited resources for companies with large volume of products and vendors. Ideal for all businesses',99,99,189);
+	(1,'Free','Utilize as principais funções sem pagar nada! Mas haverão restrições quantitativas','Use the main functions without paying anything! But there will be quantitative restrictions',6,0,0),
+	(2,'Starter','Ideal para empresas de pequeno e médio porte, possibilitando o gerenciamento de vários produtos e vendedores','Ideal for small or medium-sized businesses, allowing the management of various products and vendors',20,10,89),
+	(3,'Professional','Com este plano, empresas de médio e grande porte, possuem muito mais recursos para gerenciar seus negócios','With this plan, medium and large companies have much more resources to manage their business',99,20,119),
+	(4,'Enterprise','Oferece recursos ilimitados para empresas que possuam grande volume de produtos e vendedores, possibilitando mais controle','Provides unlimited resources for companies with large volume of products and vendors, allowing more control',99,99,189);

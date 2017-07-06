@@ -33,6 +33,10 @@
 
 /* col */
 
+[class^="col-"] {
+  display: block !important;
+}
+
 .col-1 {columns: 1}
 .col-2 {columns: 2}
 .col-3 {columns: 3}

@@ -1,7 +1,7 @@
 <?php
 
 	function connect() {
-		$con = mysqli_connect("mysql.hostinger.com.br","u274667541_admin","wan123","u274667541_sysne");
+		$con = mysqli_connect("127.0.0.1","root","","sysne");
 		return $con;
 	}
 

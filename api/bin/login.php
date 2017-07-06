@@ -26,7 +26,7 @@
 			$senha = sha1(md5($senha));
 			$login_date = date("Y-m-d H:i:s");
 
-			$return = 0;
+			$return = array();
 
 			$con = connect();
 			if($con) {
@@ -35,21 +35,19 @@
 					$id_login = $row["id_login"];
 					$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
 					$query = $con->query("SELECT id_empresa,id_plano,nome FROM empresa WHERE id_login = $id_login");
-					if($row = $query->fetch_assoc()) {
-						$row["id_login"] = $id_login;
-						$return = json_encode($row);
+					if($return = $query->fetch_assoc()) {
+						$return["id_login"] = $id_login;
 					}
 					else {
 						$query = $con->query("SELECT id_vendedor,id_empresa,nome FROM empresa WHERE id_login = $id_login");
-						if($row = $query->fetch_assoc()) {
-							$row["id_login"] = $id_login;
-							$return = json_encode($row);
+						if($return = $query->fetch_assoc()) {
+							$return["id_login"] = $id_login;
 						}
 					}
 				}
 				$con->close();
 			}
-			return $return;
+			return json_encode($return);
 		}
 	}
 
