@@ -25,5 +25,8 @@
 
 		if($method == 'select_planos')
 			echo select_planos();
+
+		if($method == 'make_login')
+			echo login::make_login($_POST["inner"],$_POST["senha"]);
 	}
 ?>

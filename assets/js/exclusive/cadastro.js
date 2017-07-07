@@ -7,13 +7,12 @@ $("#cadastro").submit(function (e) {
 			type: "POST",
 			data: data,
 			success: function(json) {
+				$('#login input[name="return"]').val(json);
 				if(json != 0) {
-					setSession(json);
-					window.location.replace("../index.php");
+					$("#cadastro").unbind().submit();
 				}
 			}
 		});
-
 });
 
 function getData(inputs) {

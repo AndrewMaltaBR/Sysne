@@ -1,3 +1,6 @@
+<?php
+  require_once("../flags/only_unloged.php");
+?>
 <!DOCTYPE html>
 <html>
   <head>

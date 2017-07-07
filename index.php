@@ -16,5 +16,10 @@
 	   }
 	}
 
-	header("Location: $choice/");
+	session_start();
+	$page = "";
+	if(!isset($_SESSION["session"]))
+		$page = "dashboard.php";
+
+	header("Location: $choice/$page");
 ?>
