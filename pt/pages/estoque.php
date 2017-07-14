@@ -1,47 +1,12 @@
-<h2 class="title"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;&nbsp;Estoque</h2>
-<article class="content col-4">
-  <section class="card product">
-    <div class="title">Kiwi verde</div>
-    <div class="image" style="background-image: url('../assets/img/kiwi.jpg');"></div>
-    <div class="details">Kiwi verde</div>
-  </section>
-  <section class="card product">
-    <div class="title">Laranja pêra</div>
-    <div class="image" style="background-image: url('../assets/img/laranja.jpg');"></div>
-    <div class="details">Laranja pêra</div>
-  </section>
-  <section class="card product">
-    <div class="title">Kiwi verde</div>
-    <div class="image" style="background-image: url('../assets/img/kiwi.jpg');"></div>
-    <div class="details">Kiwi verde</div>
-  </section>
-  <section class="card product">
-    <div class="title">Laranja pêra</div>
-    <div class="image" style="background-image: url('../assets/img/laranja.jpg');"></div>
-    <div class="details">Laranja pêra</div>
-  </section>
-  <section class="card product">
-    <div class="title">Kiwi verde</div>
-    <div class="image" style="background-image: url('../assets/img/kiwi.jpg');"></div>
-    <div class="details">Kiwi verde</div>
-  </section>
-  <section class="card product">
-    <div class="title">Laranja pêra</div>
-    <div class="image" style="background-image: url('../assets/img/laranja.jpg');"></div>
-    <div class="details">Laranja pêra</div>
-  </section>
-  <section class="card product">
-    <div class="title">Kiwi verde</div>
-    <div class="image" style="background-image: url('../assets/img/kiwi.jpg');"></div>
-    <div class="details">Kiwi verde</div>
-  </section>
-  <section class="card product">
-    <div class="title">Laranja pêra</div>
-    <div class="image" style="background-image: url('../assets/img/laranja.jpg');"></div>
-    <div class="details">Laranja pêra</div>
-  </section>
+<h2 class="title">
+	<i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;&nbsp;Estoque
+	<div class="options pull-right">
+		<button class="btn little" data-toggle="modal" data-target="cad-produto"><i class="fa fa-plus" style="margin: 0;"></i></button>
+		<button class="btn little" refresh><i class="fa fa-refresh" aria-hidden="true" style="margin: 0;"></i></button>
+	</div>
+</h2>
+<article class="content col-4" id="estoque">
 </article>
 
-<script type="text/javascript">
-  $("title").html("Sysne - Estoque");
-</script>
+<script type="text/javascript" src="../assets/js/exclusive/estoque.js"></script>
+<script type="text/javascript" src="../assets/js/modal.js"></script>

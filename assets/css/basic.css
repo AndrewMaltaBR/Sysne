@@ -65,15 +65,18 @@
 
 .pull-left {
 	float: left;
+  display: inline-block;
 }
 
 .pull-right {
 	float: right;
+  display: inline-block;
 }
 
 /* btn */
 
 .btn {
+  display: inline-block;
   font-size: inherit;
   padding: 5px 10px;
   margin: 5px;
@@ -87,8 +90,13 @@
   transition: all 200ms ease-in-out;
 }
 
-.big {
+.btn.big {
   font-size: 36px;
+}
+
+.btn.little {
+  padding: 2px 6px;
+  margin: 0;
 }
 
 .btn:hover {

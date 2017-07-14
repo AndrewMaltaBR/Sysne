@@ -1,6 +1,5 @@
 DROP TABLE item;
 DROP TABLE venda;
-DROP TABLE estoque;
 DROP TABLE entrada;
 DROP TABLE produto;
 DROP TABLE vendedor;
@@ -54,7 +53,9 @@ CREATE TABLE produto (
   id_empresa INTEGER UNSIGNED NOT NULL,
   nome TEXT NOT NULL,
   descricao TEXT NULL,
+  imagem TEXT NULL,
   valor DECIMAL(9,2) NOT NULL,
+  quantidade INTEGER UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY(id_produto),
   FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa)
 );
@@ -64,16 +65,6 @@ CREATE TABLE entrada (
   id_produto INTEGER UNSIGNED NOT NULL,
   quantidade INTEGER UNSIGNED NULL,
   PRIMARY KEY(id_entrada),
-  FOREIGN KEY (id_produto)REFERENCES produto(id_produto)
-);
-
-CREATE TABLE estoque (
-  id_estoque INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  id_empresa INTEGER UNSIGNED NOT NULL,
-  id_produto INTEGER UNSIGNED NOT NULL,
-  quantidade INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(id_estoque),
-  FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa),
   FOREIGN KEY (id_produto)REFERENCES produto(id_produto)
 );
 
@@ -97,3 +88,9 @@ CREATE TABLE item (
   FOREIGN KEY (id_produto)REFERENCES produto(id_produto),
   FOREIGN KEY (id_venda)REFERENCES venda(id_venda)
 );
+
+INSERT INTO plano VALUES
+  (1,'Free','Utilize as principais funções sem pagar nada! Mas haverão restrições quantitativas','Use the main functions without paying anything! But there will be quantitative restrictions',6,0,0),
+  (2,'Starter','Ideal para empresas de pequeno e médio porte, possibilitando o gerenciamento de vários produtos e vendedores','Ideal for small or medium-sized businesses, allowing the management of various products and vendors',20,10,89),
+  (3,'Professional','Com este plano, empresas de médio e grande porte, possuem muito mais recursos para gerenciar seus negócios','With this plan, medium and large companies have much more resources to manage their business',99,20,119),
+  (4,'Enterprise','Oferece recursos ilimitados para empresas que possuam grande volume de produtos e vendedores, possibilitando mais controle','Provides unlimited resources for companies with large volume of products and vendors, allowing more control',99,99,189);

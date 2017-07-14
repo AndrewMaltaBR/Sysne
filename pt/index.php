@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/modal.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
@@ -22,6 +23,7 @@
       <div class="logo light"></div>
       <div class="title">Sysne</div>
       <div class="options pull-right">
+        <button class="btn" refresh><i class="fa fa-refresh" aria-hidden="true" style="margin: 0;"></i></button>
         <a href="../session/logout.php" class="btn secondary"><i class="fa fa-sign-out" style="margin: 0;"></i>&nbsp;&nbsp;Sair</a>
       </div>
     </header>
@@ -36,6 +38,33 @@
     <main class="main">
 
     </main>
+
+    <div class="modal" id="cad-produto">
+      <div class="window">
+        <header class="modal-header">
+          <div class="modal-title">Novo produto</div>
+          <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
+        </header>
+        <form id="cad-produto-form" method="post">
+          <div class="modal-inner">
+            <setion class="modal-body col-2">
+              <input type="hidden" name="class" value="empresa" />
+              <input type="hidden" name="method" value="insert_produto" />
+
+              <input type="text" name="nome" placeholder="Nome do produto" required />
+              <input type="text" name="descricao" placeholder="Descrição do produto" required />
+              <input type="file" name="imagem" placeholder="Descrição do produto" required />
+              <input type="text" name="descricao" placeholder="Descrição do produto" required />
+
+            </setion>
+            <footer class="modal-footer">
+              <button class="btn primary">Criar produto</button>
+              <button class="btn" type="reset" data-close="modal">Cancelar</button>
+            </footer>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <script type="text/javascript" src="../assets/js/main.js"></script>
   </body>

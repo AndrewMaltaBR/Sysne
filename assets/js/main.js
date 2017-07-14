@@ -18,6 +18,12 @@ $("[page]").click(function () {
 	loadCurrentPage();
 });
 
+/* refresh */
+
+$("[refresh]").click(function(){
+	loadCurrentPage();
+});
+
 /* functions */
 
 function loadCurrentPage() {
@@ -27,4 +33,13 @@ function loadCurrentPage() {
 			$(".nav a[page='"+page+"']").addClass("active");
 		}
 	});
+}
+
+function getData(inputs) {
+	var data = {};
+	inputs.each(function() {
+		if($(this).is("input"))
+			data[$(this).attr("name")] = $(this).val();
+	});
+	return data;
 }

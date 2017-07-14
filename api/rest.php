@@ -20,6 +20,10 @@
 
 		if($method == "insert")
 			echo empresa::insert($_POST["username"],$_POST["email"],$_POST["senha"],$_POST["nome"]);
+		if($method == "insert_produto")
+			echo empresa::sinsert_produto($_POST["id_empresa"],$_POST["nome"],$_POST["descricao"],$_POST["imagem"],$_POST["valor"]);
+		if($method == "select_produtos")
+			echo empresa::select_produtos($_POST["id_empresa"]);
 	}
 	else {
 

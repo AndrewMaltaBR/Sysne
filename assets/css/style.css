@@ -155,6 +155,10 @@
   width: calc(100% - 40px);
 }
 
+.card .preco, .card .quantidade {
+  text-align: center
+}
+
 .card.product .title {
   text-align: center;
 }
