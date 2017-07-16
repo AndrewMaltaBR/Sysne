@@ -172,38 +172,6 @@
   background-repeat: no-repeat;
 }
 
-/* form */
-
-input {
-  display: inline-block;
-  border-bottom: 1px solid rgb(200,200,200);
-  font-size: 18px;
-  padding: 5px 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-label.radio {
-  cursor: pointer;
-  width: 100%;
-}
-
-label.radio input[type="radio"] {
-  display: none;
-}
-
-label.radio .inner {
-  border: 1px solid var(--middle-font);
-  border-radius: 3px;
-  padding: 5px;
-  margin: 5px;
-  width: calc(100% - 10px);
-}
-
-label.radio input[type="radio"]:checked+.inner {
-  background-color: rgba(0,0,0,.2);
-}
-
 /* table */
 
 .table {

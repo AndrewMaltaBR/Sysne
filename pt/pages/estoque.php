@@ -8,5 +8,5 @@
 <article class="content col-4" id="estoque">
 </article>
 
-<script type="text/javascript" src="../assets/js/exclusive/estoque.js"></script>
+<script type="text/javascript" src="pages/estoque.js"></script>
 <script type="text/javascript" src="../assets/js/modal.js"></script>

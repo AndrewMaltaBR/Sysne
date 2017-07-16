@@ -1,6 +1,7 @@
 $("title").html("Sysne - Estoque");
 
-$.get("../session/get_session.php",function (session) {
+$.get("../../session/get_session.php",function (session) {
+	console.log(session);
 	if(session != 0) {
 		session = JSON.parse(session);
 		$.ajax({

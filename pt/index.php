@@ -45,7 +45,7 @@
           <div class="modal-title">Novo produto</div>
           <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
         </header>
-        <form id="cad-produto-form" method="post">
+        <form id="cad-produto-form" method="post" enctype="multipart/form-data">
           <div class="modal-inner">
             <setion class="modal-body col-2">
               <input type="hidden" name="class" value="empresa" />
@@ -53,9 +53,11 @@
 
               <input type="text" name="nome" placeholder="Nome do produto" required />
               <input type="text" name="descricao" placeholder="Descrição do produto" required />
-              <input type="file" name="imagem" placeholder="Descrição do produto" required />
-              <input type="text" name="descricao" placeholder="Descrição do produto" required />
-
+              <input type="text" name="valor" placeholder="Valor do produto" required />
+              <label class="image-upload">
+                <input type="file" name="imagem" accept='image/*'/>
+                <image class="preview" src="../assets/img/upload.png" />
+              </label>
             </setion>
             <footer class="modal-footer">
               <button class="btn primary">Criar produto</button>
