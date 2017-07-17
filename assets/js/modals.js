@@ -11,10 +11,10 @@ $(".modal *").on('click',function(e) {
 
 $(".modal").on('click',function(e){
 	$(this).removeClass("show");
-	$(this).children("form").reset();
+	$(this).find("form")[0].reset();
 });
 
 $("[data-close='modal']").on('click',function(){
 	$(this).closest(".modal").removeClass("show");
-	$(this).closest(".modal").children("form").reset();
+	$(this).closest(".modal").find("form")[0].reset();
 });

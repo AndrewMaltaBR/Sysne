@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="../../assets/css/style.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body style="background: url('../../assets/img/vendas.jpeg') center / cover no-repeat fixed">
 
@@ -32,11 +30,10 @@
           <input type="hidden" name="method" value="insert" />
           <input type="hidden" name="return" value='0' />
 
-          <input type="text" name="username" placeholder="Nome de usuário" required />
-          <input type="text" name="nome" placeholder="Nome de identificação" required />
-          <input type="email" name="email" placeholder="Email de contato" required />
-          <input type="password" name="senha" placeholder="Digite sua senha" required />
-          <input type="password" name="senha2" placeholder="Redigite sua senha" required />
+          <input type="email" name="email" placeholder="Email de contato" required="true" />
+          <input type="text" name="nome" minlength="6" placeholder="Nome de identificação" required="true" />
+          <input type="password" name="senha" minlength="6" placeholder="Digite sua senha" required="true" />
+          <input type="password" name="senha2" minlength="6" placeholder="Redigite sua senha" required="true" />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
             <button class="btn secondary" type="submit">Cadastrar</button>
             <a href="../login" class="btn" type="submit">Login</a>
@@ -45,6 +42,9 @@
       </div>
     </main>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="cadastro.js"></script>
+
   </body>
 </html>

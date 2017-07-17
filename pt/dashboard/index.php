@@ -41,6 +41,6 @@
       </section>
     </main>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="dashboard.js"></script>
   </body>
 </html>

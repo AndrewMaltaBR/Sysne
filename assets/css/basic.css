@@ -139,6 +139,10 @@ input {
   margin-bottom: 10px;
 }
 
+label.error {
+  color: var(--red);
+}
+
 label.radio {
   cursor: pointer;
   width: 100%;

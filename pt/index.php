@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/modal.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.validate.min.js"></script>
   </head>
   <body>
     <header class="header" back-color="dark-blue">
@@ -51,9 +52,9 @@
               <input type="hidden" name="class" value="empresa" />
               <input type="hidden" name="method" value="insert_produto" />
 
-              <input type="text" name="nome" placeholder="Nome do produto" required />
-              <input type="text" name="descricao" placeholder="Descrição do produto" required />
-              <input type="text" name="valor" placeholder="Valor do produto" required />
+              <input type="text" name="nome" minlength="6" placeholder="Nome do produto" required />
+              <input type="text" name="descricao" minlength="6" placeholder="Descrição do produto" required />
+              <input type="number" name="valor" placeholder="Valor do produto" required />
               <label class="image-upload">
                 <input type="file" name="imagem" accept='image/*'/>
                 <image class="preview" src="../assets/img/upload.png" />
@@ -67,7 +68,7 @@
         </div>
       </div>
     </div>
-
     <script type="text/javascript" src="../assets/js/main.js"></script>
+    <script type="text/javascript" src="forms/cad-produto.js"></script>
   </body>
 </html>

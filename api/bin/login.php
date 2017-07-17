@@ -3,8 +3,7 @@
 	
 	class login {
 
-		static function insert($username,$email,$senha) {
-			$username = fix($username);
+		static function insert($email,$senha) {
 			$email = fix($email);
 			$senha = sha1(md5($senha));
 
@@ -12,7 +11,7 @@
 
 			$con = connect();
 			if($con) {
-				$query = $con->query("INSERT INTO login(username,email,senha) VALUES('$username','$email','$senha')");
+				$query = $con->query("INSERT INTO login(email,senha) VALUES('$email','$senha')");
 				if($query) {
 					$return = $con->insert_id;
 				}
@@ -21,33 +20,38 @@
 			return $return;
 		}
 
-		static function make_login($inner,$senha) {
-			$inner = fix($inner);
+		static function make_login($email,$senha) {
+			$email = fix($email);
 			$senha = sha1(md5($senha));
 			$login_date = date("Y-m-d H:i:s");
 
-			$return = array();
+			$return = 0;
 
 			$con = connect();
 			if($con) {
-				$query = $con->query("SELECT id_login FROM login WHERE senha = '$senha' AND (username = '$inner' OR email = '$inner')");
+				$query = $con->query("SELECT id_login, estado FROM login WHERE senha = '$senha' AND email = '$email'");
 				if($row = $query->fetch_assoc()) {
 					$id_login = $row["id_login"];
-					$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
-					$query = $con->query("SELECT id_empresa,id_plano,nome FROM empresa WHERE id_login = $id_login");
-					if($return = $query->fetch_assoc()) {
-						$return["id_login"] = $id_login;
-					}
-					else {
-						$query = $con->query("SELECT id_vendedor,id_empresa,nome FROM empresa WHERE id_login = $id_login");
+					if($row["estado"] == 0) {
+						
+						$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
+						$query = $con->query("SELECT id_login,id_empresa,id_plano,nome FROM empresa WHERE id_login = $id_login");
 						if($return = $query->fetch_assoc()) {
-							$return["id_login"] = $id_login;
+							$return = json_encode($return);
+						}
+						else {
+							$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
+							$query = $con->query("SELECT id_login,id_vendedor,id_empresa,nome FROM empresa WHERE id_login = $id_login");
+							if($return = $query->fetch_assoc())
+								$return = json_encode($return);
 						}
 					}
+					else
+						$return = -1;
 				}
 				$con->close();
 			}
-			return json_encode($return);
+			return $return;
 		}
 	}
 

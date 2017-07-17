@@ -1,7 +1,12 @@
 /* initialize */
 
 var page = "estatisticas";
+var session = null;
 loadCurrentPage();
+
+$.get("../session/get_session.php",function(json){
+	session = JSON.parse(json);
+});
 
 /* nav events */
 
@@ -52,9 +57,16 @@ function loadCurrentPage() {
 
 function getData(inputs) {
 	var data = {};
+	var empty = false;
 	inputs.each(function() {
-		if($(this).is("input"))
-			data[$(this).attr("name")] = $(this).val();
+		if($(this).is("input")) {
+			if(!$(this).val())
+				empty = true;
+			else
+				data[$(this).attr("name")] = $(this).val();
+		}
 	});
+	if(empty)
+		data = null;
 	return data;
 }

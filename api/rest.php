@@ -1,7 +1,7 @@
 <?php
 	header('Access-Control-Allow-Origin: *');
-	//error_reporting(E_ALL);
-	//ini_set("display_errors",0);
+	error_reporting(E_ALL);
+	ini_set("display_errors",0);
 
 	require_once("bin/geral.php");
 	require_once("bin/login.php");
@@ -19,9 +19,9 @@
 	if($class == "empresa") {
 
 		if($method == "insert")
-			echo empresa::insert($_POST["username"],$_POST["email"],$_POST["senha"],$_POST["nome"]);
+			echo empresa::insert($_POST["email"],$_POST["senha"],$_POST["nome"]);
 		if($method == "insert_produto")
-			echo empresa::sinsert_produto($_POST["id_empresa"],$_POST["nome"],$_POST["descricao"],$_POST["imagem"],$_POST["valor"]);
+			echo empresa::insert_produto($_POST["id_empresa"],$_POST["nome"],$_POST["descricao"],$_POST["imagem"],$_POST["valor"]);
 		if($method == "select_produtos")
 			echo empresa::select_produtos($_POST["id_empresa"]);
 	}
@@ -31,6 +31,6 @@
 			echo select_planos();
 
 		if($method == 'make_login')
-			echo login::make_login($_POST["inner"],$_POST["senha"]);
+			echo login::make_login($_POST["email"],$_POST["senha"]);
 	}
 ?>

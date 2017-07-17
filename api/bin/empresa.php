@@ -4,9 +4,9 @@
 
 	class empresa {
 		
-		static function insert($username,$email,$senha,$nome) {
+		static function insert($email,$senha,$nome) {
 			$return = 0;
-			$id_login = login::insert($username,$email,$senha);
+			$id_login = login::insert($email,$senha);
 
 			if($id_login > 0) {
 				$nome = fix($nome);
@@ -17,8 +17,9 @@
 						$return = array();
 						$return["id_login"] = $id_login;
 						$return["id_empresa"] = $con->insert_id;
+						$return["id_plano"] = 1;
 						$return["nome"] = $nome;
-						json_encode($return);
+						$return = json_encode($return);
 					}
 					$con->close();
 				}
@@ -26,7 +27,7 @@
 			return $return;
 		}
 
-		tatic function insert_produto($id_empresa,$nome,$descricao,$imagem,$valor) {
+		static function insert_produto($id_empresa,$nome,$descricao,$imagem,$valor) {
 			$nome = fix($nome);
 			$descricao = fix($descricao);
 			if(!imagem != null)

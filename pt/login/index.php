@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="../../assets/css/style.css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body style="background: url('../../assets/img/vendas.jpeg') center / cover no-repeat fixed">
 
@@ -31,8 +29,8 @@
           <input type="hidden" name="method" value="make_login" />
           <input type="hidden" name="return" value='0' />
 
-          <input type="text" name="inner" placeholder="Nome de usuário ou email" required />
-          <input type="password" name="senha" placeholder="Digite sua senha" required />
+          <input type="email" name="email" placeholder="Digite seu email" required="true" />
+          <input type="password" minlength="6" name="senha" placeholder="Digite sua senha" required="true"  />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
             <button class="btn secondary" type="submit">Login</button>
             <a href="../cadastro" class="btn" type="submit">Cadastrar</a>
@@ -41,6 +39,8 @@
       </div>
     </main>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="login.js"></script>
   </body>
 </html>
