@@ -42,6 +42,7 @@ CREATE TABLE vendedor (
   id_login INTEGER UNSIGNED NOT NULL,
   id_empresa INTEGER UNSIGNED NOT NULL,
   nome TEXT NOT NULL,
+  estado INTEGER UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY(id_vendedor),
   FOREIGN KEY (id_login)REFERENCES login(id_login),
   FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa)
@@ -54,7 +55,8 @@ CREATE TABLE produto (
   descricao TEXT NULL,
   imagem TEXT NULL,
   valor DECIMAL(9,2) NOT NULL,
-  quantidade DOUBLE UNSIGNED NOT NULL DEFAULT 0,
+  quantidade DOUBLE NOT NULL DEFAULT 0,
+  quantidade DOUBLE NOT NULL DEFAULT 0,
   estado INTEGER UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY(id_produto),
   FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa)
@@ -63,7 +65,7 @@ CREATE TABLE produto (
 CREATE TABLE entrada (
   id_entrada INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   id_produto INTEGER UNSIGNED NOT NULL,
-  quantidade INTEGER UNSIGNED NULL,
+  quantidade DOUBLE NOT NULL,
   PRIMARY KEY(id_entrada),
   FOREIGN KEY (id_produto)REFERENCES produto(id_produto)
 );

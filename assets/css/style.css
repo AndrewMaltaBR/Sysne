@@ -123,12 +123,6 @@
   display: block;
 }
 
-/* content */
-
-.content * {
-  display: block;
-}
-
 /* card */
 
 .card {
@@ -159,7 +153,8 @@
 }
 
 .card.product .title {
-  text-align: center;
+  display: inline-block;
+  width: calc(100% - 90px);
 }
 
 .card .image {
@@ -181,7 +176,7 @@
 }
 
 .table thead {
-  background-color: var(--blue);
+  background-color: var(--red);
   color: var(--light-font);
   width: 100%;
 }

@@ -76,7 +76,7 @@
 /* btn */
 
 .btn {
-  display: inline-block;
+  display: inline-block !important;
   font-size: inherit;
   padding: 5px 10px;
   margin: 5px;
@@ -135,9 +135,12 @@ input {
   border-bottom: 1px solid rgb(200,200,200);
   font-size: 18px;
   padding: 5px 5px;
-  width: 100%;
   margin-bottom: 10px;
   background-color: inherit;
+}
+
+input:not([type='checkbox']) {
+  width: 100%;
 }
 
 label.error {

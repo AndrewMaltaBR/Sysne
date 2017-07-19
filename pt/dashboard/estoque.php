@@ -59,6 +59,81 @@
 		else
 			$alert = "alert('Não foi possível criar o produto, tente novamente.')";
 	}
+	elseif(isset($_POST["update_produto"])) {
+		$post = array(
+			"class" => "empresa",
+			"method" => "update_produto",
+			"id_produto" => $_POST["id_produto"],
+			"nome" => $_POST["nome"],
+			"descricao" => $_POST["descricao"],
+			"valor" => $_POST["valor"]
+		);
+		$result = call($post);
+		if($result == 1) {
+			if(isset($_POST["mudar_imagem"]) && isset($_FILES['imagem'])) {
+				$id = $_POST["id_produto"];
+				$caminho = $_SERVER['DOCUMENT_ROOT'].'/sysne/assets/img/upload/';
+				$imagem = $_FILES['imagem'];
+		        $extension = pathinfo($imagem["name"], PATHINFO_EXTENSION);
+		        $imagem["name"] = 'produto'.$id.'.'.$extension;
+		        move_uploaded_file($imagem['tmp_name'],$caminho.$imagem["name"]);
+				var_dump($caminho.$imagem["name"]);
+		        img_resize($caminho.$imagem["name"],$caminho.$imagem["name"],$extension);
+		        chmod($caminho.$imagem["name"],0777);
+
+		        $post = array(
+					"class" => "empresa",
+					"method" => "update_imagem",
+					"id_produto" => $id,
+					"imagem" => $imagem["name"]
+				);
+				call($post);
+			header("location: estoque.php");
+			}
+		}
+		else
+			$alert = "alert('Não foi possível editar o produto, tente novamente.')";
+	}
+	elseif(isset($_POST["entrada_produto"])) {
+		$post = array(
+			"class" => "empresa",
+			"method" => "entrada_produto",
+			"id_produto" => $_POST["id_produto"],
+			"quantidade" => $_POST["quantidade"]
+		);
+		$result = call($post);
+		if($result == 0)
+			$alert = "alert('Não foi possível editar o produto, tente novamente.')";
+		else
+			header("location: estoque.php");
+	}
+	elseif(isset($_POST["bloquear_produto"])) {
+		$post = array(
+			"class" => "empresa",
+			"method" => "bloquear_produto",
+			"id_produto" => $_POST["id_produto"]
+		);
+		$result = call($post);
+		if($result == 0)
+			$alert = "alert('Não foi possível bloquear o produto, tente novamente.')";
+		else
+			header("location: estoque.php");
+	}
+	elseif(isset($_POST["desbloquear_produto"])) {
+		$post = array(
+			"class" => "empresa",
+			"method" => "desbloquear_produto",
+			"id_produto" => $_POST["id_produto"]
+		);
+		$result = call($post);
+		if($result == 0)
+			$alert = "alert('Não foi possível desbloquear o produto, tente novamente.')";
+		else
+			header("location: estoque.php");
+	}
+
+	if(isset($_GET["reload"]))
+		header("location: estoque.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,13 +174,28 @@
 		    	echo '<p>Nenhum produto cadastrado. <a href="#" data-toggle="modal" data-target="cad-produto">Clique aqui para cadastrar!</a></p>';
 		    for($i=0;$i<count($produtos);$i++) {
 		    	$produto = $produtos[$i];
+		    	$pouco = "";
+		    	$bloquear = "bloquear";
+		    	$bloquear_icon = "unlock";
+		    	if($produto->quantidade < 10)
+		    		$pouco = 'color:var(--red)';
+		    	if($produto->estado == 1) {
+		    		$bloquear = "desbloquear";
+		    		$bloquear_icon = "lock";
+		    	}
 		    	echo '<section class="card product">'.
 					    '<div class="title">'.$produto->nome.'</div>'.
+					    '<div class="pull-right">'.
+					    	'<button class="btn little" data-toggle="modal" data-target="entrada-produto" id_produto='.$produto->id_produto.'><i class="fa fa-plus" style="margin: 0;"></i></button>'.
+					    	'<button class="btn little" data-toggle="modal" data-target="edit-produto" id_produto='.$produto->id_produto.'><i class="fa fa-pencil" style="margin: 0;"></i></button>'.
+					    	'<button class="btn little"  data-toggle="modal" data-target="'.$bloquear.'-produto" id_produto='.$produto->id_produto.'><i class="fa fa-'.$bloquear_icon.'" style="margin: 0;"></i></button>'.
+					    	'<input type="hidden" id="produto'.$produto->id_produto.'" value=\''.(json_encode($produto)).'\'/>'.
+					    '</div>'.
 					    '<div class="image" style="background-image:url(../../assets/img/upload/'.$produto->imagem.')"></div>'.
 					    '<div class="col-1">'.
 						    '<div class="details" style="margin-bottom:5px">'.$produto->descricao.'</div>'.
 						    '<div style="display:block">R$ '.$produto->valor.'</div>'.
-						    '<div style="display:block">Disponível: '.$produto->quantidade.'</div>'.
+						    '<div style="display:block;'.$pouco.'">Disponível: '.$produto->quantidade.'</div>'.
 						'</div>'.
 					  '</section>';
 		    }
@@ -128,16 +218,113 @@
                 <input type="number" name="valor" placeholder="Valor do produto" required />
               </div>
               <label class="image-upload">
+                <input type="file" name="imagem" accept='image/*' required />
+                <image class="preview" src="../../assets/img/upload.png" />
+              </label>
+            </setion>
+            <footer class="modal-footer">
+              <button class="btn primary" type="submit" name="insert_produto">Confirmar</button>
+              <button class="btn" type="reset" data-close="modal">Cancelar</button>
+            </footer>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="edit-produto">
+      <div class="window">
+        <header class="modal-header">
+          <div class="modal-title">Editar produto</div>
+          <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
+        </header>
+        <form id="edit-produto-form" method="post" action="#" enctype="multipart/form-data">
+          <div class="modal-inner">
+            <setion class="modal-body col-2">
+              <div>
+                <input type="hidden" name="id_produto" required />
+                <input type="text" name="nome" minlength="6" placeholder="Nome do produto" required />
+                <input type="text" name="descricao" minlength="6" placeholder="Descrição do produto" required />
+                <input type="number" name="valor" placeholder="Valor do produto" required />
+                <label>
+                	<input type="checkbox" name="mudar_imagem" />&nbsp;&nbsp;Mudar imagem
+                </label>
+              </div>
+              <label class="image-upload">
                 <input type="file" name="imagem" accept='image/*'/>
                 <image class="preview" src="../../assets/img/upload.png" />
               </label>
             </setion>
             <footer class="modal-footer">
-              <button class="btn primary" type="submit" name="insert_produto">Criar produto</button>
+              <button class="btn primary" type="submit" name="update_produto">Confirmar</button>
               <button class="btn" type="reset" data-close="modal">Cancelar</button>
             </footer>
-          </form>
-        </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="entrada-produto">
+      <div class="window">
+        <header class="modal-header">
+          <div class="modal-title">Registrar entrada de produtos</div>
+          <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
+        </header>
+        <form id="entrada-produto-form" method="post" action="#" enctype="multipart/form-data">
+          <div class="modal-inner">
+            <setion class="modal-body col-1">
+              <div>
+                <input type="hidden" name="id_produto" required />
+                <input type="number" name="quantidade" placeholder="Quantidade a dar entrada" required />
+              </div>
+            </setion>
+            <footer class="modal-footer">
+              <button class="btn primary" type="submit" name="entrada_produto">Confirmar</button>
+              <button class="btn" type="reset" data-close="modal">Cancelar</button>
+            </footer>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="bloquear-produto">
+      <div class="window">
+        <header class="modal-header">
+          <div class="modal-title">Bloquear produto</div>
+          <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
+        </header>
+        <form id="bloquear-produto-form" method="post" action="#" enctype="multipart/form-data">
+          <div class="modal-inner">
+            <setion class="modal-body col-1">
+                <input type="hidden" name="id_produto" required />
+                <p>Se você bloquear este produto, ele ficará indisponível para vendas. Todos os produtos podem ser desbloqueados.</p> <p>Deseja fazer isso?</p>
+            </setion>
+            <footer class="modal-footer">
+              <button class="btn primary" type="submit" name="bloquear_produto">Confirmar</button>
+              <button class="btn" type="reset" data-close="modal">Cancelar</button>
+            </footer>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="desbloquear-produto">
+      <div class="window">
+        <header class="modal-header">
+          <div class="modal-title">Desbloquear produto</div>
+          <button class="btn pull-right" data-close="modal"><i class="fa fa-times"></i></button>
+        </header>
+        <form id="desbloquear-produto-form" method="post" action="#" enctype="multipart/form-data">
+          <div class="modal-inner">
+            <setion class="modal-body col-1">
+                <input type="hidden" name="id_produto" required />
+                <p>Se você desbloquear este produto, ele ficará disponível para vendas. Todos os produtos podem ser bloqueados.</p> <p>Deseja fazer isso?</p>
+            </setion>
+            <footer class="modal-footer">
+              <button class="btn primary" type="submit" name="desbloquear_produto">Confirmar</button>
+              <button class="btn" type="reset" data-close="modal">Cancelar</button>
+            </footer>
+          </div>
+        </form>
       </div>
     </div>
 

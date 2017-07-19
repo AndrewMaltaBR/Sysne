@@ -48,8 +48,8 @@
         </h2>
 
         <form id="login" method="post" action="#">
-          <input type="email" name="email" placeholder="Digite seu email" required="true" autofocus />
-          <input type="password" minlength="6" name="senha" placeholder="Digite sua senha" required="true"  />
+          <input type="email" name="email" placeholder="Digite seu email" required />
+          <input type="password" minlength="6" name="senha" placeholder="Digite sua senha" required  />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
             <button class="btn secondary" type="submit" name="login">Login</button>
             <a href="../cadastro" class="btn" type="submit">Cadastrar</a>

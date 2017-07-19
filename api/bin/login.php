@@ -20,6 +20,21 @@
 			return $return;
 		}
 
+		static function update($id_login,$email) {
+			$email = fix($email);
+
+			$return = 0;
+
+			$con = connect();
+			if($con) {
+				$query = $con->query("UPDATE login SET email='$email' WHERE id_login = $id_login");
+				if($query)
+					$return = 1;
+				$con->close();
+			}
+			return $return;
+		}
+
 		static function make_login($email,$senha) {
 			$email = fix($email);
 			$senha = sha1(md5($senha));

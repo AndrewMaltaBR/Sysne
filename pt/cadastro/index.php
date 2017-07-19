@@ -49,8 +49,8 @@
         </h2>
 
         <form id="cadastro" method="post" action="#">
-          <input type="email" name="email" placeholder="Email de contato" required autofocus />
           <input type="text" name="nome" minlength="6" placeholder="Nome de identificação" required />
+          <input type="email" name="email" placeholder="Email de contato" required />
           <input type="password" name="senha" minlength="6" placeholder="Digite sua senha" required />
           <input type="password" name="senha2" minlength="6" placeholder="Redigite sua senha" required />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
