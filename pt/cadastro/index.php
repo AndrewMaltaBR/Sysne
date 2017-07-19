@@ -1,5 +1,28 @@
 <?php
   require_once("../../flags/only_unloged.php");
+  require_once("../../service_connect.php");
+
+  $alert = "";
+
+  if(isset($_POST["cadastro"])) {
+    $post = array(
+      "class" => "empresa",
+      "method" => "insert",
+      "email" => $_POST["email"],
+      "nome" => $_POST["nome"],
+      "senha" => $_POST["senha"]
+    );
+    $json = call($post);
+    $session = json_decode($json);
+    if(isset($session->id_login)){
+      session_start();
+      $_SESSION["session"] = $json;
+      header("location: ../../");
+    }
+    else{
+      $alert = "alert('Já exite uma conta com este email!')";
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,17 +48,13 @@
           <p>Crie sua conta Sysne agora!</p>
         </h2>
 
-        <form id="cadastro" method="post" action="../../session/login.php">
-          <input type="hidden" name="class" value="empresa" />
-          <input type="hidden" name="method" value="insert" />
-          <input type="hidden" name="return" value='0' />
-
-          <input type="email" name="email" placeholder="Email de contato" required="true" />
-          <input type="text" name="nome" minlength="6" placeholder="Nome de identificação" required="true" />
-          <input type="password" name="senha" minlength="6" placeholder="Digite sua senha" required="true" />
-          <input type="password" name="senha2" minlength="6" placeholder="Redigite sua senha" required="true" />
+        <form id="cadastro" method="post" action="#">
+          <input type="email" name="email" placeholder="Email de contato" required autofocus />
+          <input type="text" name="nome" minlength="6" placeholder="Nome de identificação" required />
+          <input type="password" name="senha" minlength="6" placeholder="Digite sua senha" required />
+          <input type="password" name="senha2" minlength="6" placeholder="Redigite sua senha" required />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
-            <button class="btn secondary" type="submit">Cadastrar</button>
+            <button class="btn secondary" type="submit" name="cadastro">Cadastrar</button>
             <a href="../login" class="btn" type="submit">Login</a>
           </div>
         </form>
@@ -45,6 +64,6 @@
     <script type="text/javascript" src="../../assets/js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="../../assets/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="cadastro.js"></script>
-
+    <script type="text/javascript"><?php echo $alert; ?></script>
   </body>
 </html>

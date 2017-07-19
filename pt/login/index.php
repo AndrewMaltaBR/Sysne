@@ -1,5 +1,27 @@
 <?php
   require_once("../../flags/only_unloged.php");
+  require_once("../../service_connect.php");
+
+  $alert = "";
+
+  if(isset($_POST["login"])) {
+    $post = array(
+      "class" => "login",
+      "method" => "make_login",
+      "email" => $_POST["email"],
+      "senha" => $_POST["senha"]
+    );
+    $json = call($post);
+    $session = json_decode($json);
+    if(isset($session->id_login)){
+      session_start();
+      $_SESSION["session"] = $json;
+      header("location: ../../");
+    }
+    else{
+      $alert = "alert('Email ou senha não conferem!')";
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,14 +47,11 @@
           <p>Login</p>
         </h2>
 
-        <form id="login" method="post" action="../../session/login.php">
-          <input type="hidden" name="method" value="make_login" />
-          <input type="hidden" name="return" value='0' />
-
-          <input type="email" name="email" placeholder="Digite seu email" required="true" />
+        <form id="login" method="post" action="#">
+          <input type="email" name="email" placeholder="Digite seu email" required="true" autofocus />
           <input type="password" minlength="6" name="senha" placeholder="Digite sua senha" required="true"  />
           <div style="max-width:220px;margin:auto;margin-top:20px;">
-            <button class="btn secondary" type="submit">Login</button>
+            <button class="btn secondary" type="submit" name="login">Login</button>
             <a href="../cadastro" class="btn" type="submit">Cadastrar</a>
           </div>
         </form>
@@ -42,5 +61,6 @@
     <script type="text/javascript" src="../../assets/js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="../../assets/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="login.js"></script>
+    <script type="text/javascript"><?php echo $alert; ?></script>
   </body>
 </html>

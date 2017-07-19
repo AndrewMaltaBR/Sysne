@@ -1,13 +1,3 @@
-/* initialize */
-
-var page = "estatisticas";
-var session = null;
-loadCurrentPage();
-
-$.get("../session/get_session.php",function(json){
-	session = JSON.parse(json);
-});
-
 /* nav events */
 
 $(".btn-nav").click(function () {
@@ -26,7 +16,7 @@ $("[page]").click(function () {
 /* refresh */
 
 $("[refresh]").click(function(){
-	loadCurrentPage();
+	location.reload();
 });
 
 /* image upload */
@@ -34,8 +24,6 @@ $("[refresh]").click(function(){
 $("label.image-upload input[type='file']").change(function(){
 	if (typeof (FileReader) != "undefined") {
         var img = $(this).closest("label.image-upload").children("img.preview");
-
-
         var reader = new FileReader();
         reader.onload = function (e) {
 			img.attr("src",e.target.result);
@@ -44,29 +32,50 @@ $("label.image-upload input[type='file']").change(function(){
     }
 });
 
+/* modal events */
+
+$("[data-toggle='modal']").on('click',function (){
+	var id_modal = $(this).attr("data-target");
+	$("#"+id_modal).addClass("show");
+});
+
+$(".modal *").on('click',function(e) {
+	e.stopPropagation();
+});
+
+$(".modal").on('click',function(e){
+	$(this).removeClass("show");
+	$(this).find("form")[0].reset();
+	$(this).find(".preview").attr("src","../assets/img/upload.png");
+});
+
+$("[data-close='modal']").on('click',function(){
+	$(this).closest(".modal").removeClass("show");
+	$(this).closest(".modal").find("form")[0].reset();
+	$(this).closest(".modal").find("img.preview").attr("src","../assets/img/upload.png");
+});
+
+/* modal events */
+
+$("[data-toggle='modal']").on('click',function (){
+	var id_modal = $(this).attr("data-target");
+	$("#"+id_modal).addClass("show");
+});
+
+$(".modal *").on('click',function(e) {
+	e.stopPropagation();
+});
+
+$(".modal").on('click',function(e){
+	$(this).removeClass("show");
+	$(this).find("form")[0].reset();
+	$(this).find(".preview").attr("src","../../assets/img/upload.png");
+});
+
+$("[data-close='modal']").on('click',function(){
+	$(this).closest(".modal").removeClass("show");
+	$(this).closest(".modal").find("form")[0].reset();
+	$(this).closest(".modal").find("img.preview").attr("src","../../assets/img/upload.png");
+});
+
 /* functions */
-
-function loadCurrentPage() {
-	$(".main").load("pages/"+page+".php",function(response, status, xhr) {
-		if(status != "error") {
-			$(".nav a.active").removeClass("active");
-			$(".nav a[page='"+page+"']").addClass("active");
-		}
-	});
-}
-
-function getData(inputs) {
-	var data = {};
-	var empty = false;
-	inputs.each(function() {
-		if($(this).is("input")) {
-			if(!$(this).val())
-				empty = true;
-			else
-				data[$(this).attr("name")] = $(this).val();
-		}
-	});
-	if(empty)
-		data = null;
-	return data;
-}

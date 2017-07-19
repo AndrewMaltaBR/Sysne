@@ -17,9 +17,9 @@
 	}
 
 	session_start();
-	$page = "";
+	$page = "dashboard";
 	if(!isset($_SESSION["session"]))
-		$page = "dashboard";
+		$page = "";
 
 	header("Location: $choice/$page");
 ?>

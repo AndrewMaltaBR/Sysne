@@ -27,11 +27,9 @@
 			return $return;
 		}
 
-		static function insert_produto($id_empresa,$nome,$descricao,$imagem,$valor) {
+		static function insert_produto($id_empresa,$nome,$descricao,$valor) {
 			$nome = fix($nome);
 			$descricao = fix($descricao);
-			if(!imagem != null)
-				$imagem = "'"+fix($imagem)+"'";
 			$return = 0;
 
 			$con = connect();
@@ -40,11 +38,37 @@
 				$row = $query->fetch_assoc();
 				$query = $con->query("SELECT id_produto FROM produto WHERE id_empresa = '$id_empresa'");
 				if($row["produtos"] == 99 || $row["produtos"] > $query->num_rows) {
-					$query = $con->query("INSERT INTO produto(id_empresa,nome,descricao,imagem,valor) VALUES($id_empresa,'$nome','$descricao',$imagem,$valor)");
+					$query = $con->query("INSERT INTO produto(id_empresa,nome,descricao,valor) VALUES($id_empresa,'$nome','$descricao',$valor)");
 					if($query)
 						$return = $con->insert_id;
-					$con->close();
 				}
+				$con->close();
+			}
+			return $return;
+		}
+
+		static function update_imagem($id_produto,$imagem) {
+			$return = 0;
+
+			$con = connect();
+			if($con) {
+				$query = $con->query("UPDATE produto SET imagem = '$imagem' WHERE id_produto = $id_produto");
+				if($query)
+					$return = 1;
+				$con->close();
+			}
+			return $return;
+		}
+
+		static function update_produto($id_produto,$nome,$descricao,$valor,$imagem) {
+			$return = 0;
+
+			$con = connect();
+			if($con) {
+				$query = $con->query("UPDATE produto SET nome='$nome',descricao='$descricao',valor=$valor,imagem='$imagem' WHERE id_produto = $id_produto");
+				if($query)
+					$return = 1;
+				$con->close();
 			}
 			return $return;
 		}
