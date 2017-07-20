@@ -110,7 +110,6 @@
 				<button class="btn" data-toggle="modal" data-target="cad-vendedor"><i class="fa fa-plus" style="margin: 0;"></i>&nbsp;&nbsp;Cadastrar vendedor</button>
 			</div>
 		</h2>
-		<input id="filtro" type="text" style="display:inline-block;" placeholder="Pesquisar">
 		<article id="produtos" class="content">
 		<?php
 			$post = array(

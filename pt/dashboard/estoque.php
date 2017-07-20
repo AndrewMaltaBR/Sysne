@@ -34,7 +34,8 @@
 			"id_empresa" => $session->id_empresa,
 			"nome" => $_POST["nome"],
 			"descricao" => $_POST["descricao"],
-			"valor" => $_POST["valor"]
+			"valor" => $_POST["valor"],
+			"unidade_medida" => $_POST["unidade_medida"]
 		);
 		$id = call($post);
 		if($id > 0) {
@@ -66,7 +67,8 @@
 			"id_produto" => $_POST["id_produto"],
 			"nome" => $_POST["nome"],
 			"descricao" => $_POST["descricao"],
-			"valor" => $_POST["valor"]
+			"valor" => $_POST["valor"],
+			"unidade_medida" => $_POST["unidade_medida"]
 		);
 		$result = call($post);
 		if($result == 1) {
@@ -160,7 +162,6 @@
 				<button class="btn" data-toggle="modal" data-target="cad-produto"><i class="fa fa-plus" style="margin: 0;"></i>&nbsp;&nbsp;Criar produto</button>
 			</div>
 		</h2>
-		<input id="filtro" type="text" style="display:inline-block;" placeholder="Pesquisar">
 		<article id="produtos" class="content col-4">
 		<?php
 			$post = array(
@@ -175,27 +176,30 @@
 		    for($i=0;$i<count($produtos);$i++) {
 		    	$produto = $produtos[$i];
 		    	$pouco = "";
+		    	$plural = "";
 		    	$bloquear = "bloquear";
 		    	$bloquear_icon = "unlock";
 		    	if($produto->quantidade < 10)
 		    		$pouco = 'color:var(--red)';
+		    	if($produto->quantidade > 1 || $produto->quantidade == 0)
+		    		$plural = 's';
 		    	if($produto->estado == 1) {
 		    		$bloquear = "desbloquear";
 		    		$bloquear_icon = "lock";
 		    	}
 		    	echo '<section class="card product">'.
 					    '<div class="title">'.$produto->nome.'</div>'.
-					    '<div class="pull-right">'.
-					    	'<button class="btn little" data-toggle="modal" data-target="entrada-produto" id_produto='.$produto->id_produto.'><i class="fa fa-plus" style="margin: 0;"></i></button>'.
-					    	'<button class="btn little" data-toggle="modal" data-target="edit-produto" id_produto='.$produto->id_produto.'><i class="fa fa-pencil" style="margin: 0;"></i></button>'.
-					    	'<button class="btn little"  data-toggle="modal" data-target="'.$bloquear.'-produto" id_produto='.$produto->id_produto.'><i class="fa fa-'.$bloquear_icon.'" style="margin: 0;"></i></button>'.
-					    	'<input type="hidden" id="produto'.$produto->id_produto.'" value=\''.(json_encode($produto)).'\'/>'.
-					    '</div>'.
 					    '<div class="image" style="background-image:url(../../assets/img/upload/'.$produto->imagem.')"></div>'.
 					    '<div class="col-1">'.
 						    '<div class="details" style="margin-bottom:5px">'.$produto->descricao.'</div>'.
-						    '<div style="display:block">R$ '.$produto->valor.'</div>'.
-						    '<div style="display:block;'.$pouco.'">Disponível: '.$produto->quantidade.'</div>'.
+						    '<div style="display:block">R$ '.$produto->valor.' cada '.$produto->unidade_medida.'</div>'.
+						    '<div style="display:block;'.$pouco.'">Estoque: '.$produto->quantidade.' '.$produto->unidade_medida.$plural.'</div>'.
+						    '<div class="pull-left">'.
+						    	'<button class="btn little" data-toggle="modal" data-target="entrada-produto" id_produto='.$produto->id_produto.'><i class="fa fa-plus" style="margin: 0;"></i></button>'.
+						    	'<button class="btn little" data-toggle="modal" data-target="edit-produto" id_produto='.$produto->id_produto.'><i class="fa fa-pencil" style="margin: 0;"></i></button>'.
+						    	'<button class="btn little"  data-toggle="modal" data-target="'.$bloquear.'-produto" id_produto='.$produto->id_produto.'><i class="fa fa-'.$bloquear_icon.'" style="margin: 0;"></i></button>'.
+						    	'<input type="hidden" id="produto'.$produto->id_produto.'" value=\''.(json_encode($produto)).'\'/>'.
+						    '</div>'.
 						'</div>'.
 					  '</section>';
 		    }
@@ -216,6 +220,7 @@
                 <input type="text" name="nome" minlength="6" placeholder="Nome do produto" required />
                 <input type="text" name="descricao" minlength="6" placeholder="Descrição do produto" required />
                 <input type="number" name="valor" placeholder="Valor do produto" required />
+                <input type="text" name="unidade_medida" placeholder="Unidade de medida (Kg, unidade, etc)" required />
               </div>
               <label class="image-upload">
                 <input type="file" name="imagem" accept='image/*' required />
@@ -245,6 +250,7 @@
                 <input type="text" name="nome" minlength="6" placeholder="Nome do produto" required />
                 <input type="text" name="descricao" minlength="6" placeholder="Descrição do produto" required />
                 <input type="number" name="valor" placeholder="Valor do produto" required />
+                <input type="text" name="unidade_medida" placeholder="Unidade de medida (Kg, unidade, etc)" required />
                 <label>
                 	<input type="checkbox" name="mudar_imagem" />&nbsp;&nbsp;Mudar imagem
                 </label>

@@ -22,11 +22,11 @@
 			echo empresa::insert($_POST["email"],$_POST["senha"],$_POST["nome"]);
 
 		if($method == "insert_produto")
-			echo empresa::insert_produto($_POST["id_empresa"],$_POST["nome"],$_POST["descricao"],$_POST["valor"]);
+			echo empresa::insert_produto($_POST["id_empresa"],$_POST["nome"],$_POST["descricao"],$_POST["valor"],$_POST["unidade_medida"]);
 		if($method == "update_imagem")
 			echo empresa::update_imagem($_POST["id_produto"],$_POST["imagem"]);
 		if($method == "update_produto")
-			echo empresa::update_produto($_POST["id_produto"],$_POST["nome"],$_POST["descricao"],$_POST["valor"]);
+			echo empresa::update_produto($_POST["id_produto"],$_POST["nome"],$_POST["descricao"],$_POST["valor"],$_POST["unidade_medida"]);
 		if($method == "entrada_produto")
 			echo empresa::entrada_produto($_POST["id_produto"],$_POST["quantidade"]);
 		if($method == "bloquear_produto")
@@ -35,6 +35,8 @@
 			echo empresa::desbloquear_produto($_POST["id_produto"]);
 		if($method == "select_produtos")
 			echo empresa::select_produtos($_POST["id_empresa"]);
+		if($method == "select_produtos_disponiveis")
+			echo empresa::select_produtos_disponiveis($_POST["id_empresa"]);
 
 		if($method == "insert_vendedor")
 			echo empresa::insert_vendedor($_POST["id_empresa"],$_POST["email"],$_POST["senha"],$_POST["nome"]);
@@ -46,6 +48,19 @@
 			echo empresa::desbloquear_vendedor($_POST["id_vendedor"]);
 		if($method == "select_vendedores")
 			echo empresa::select_vendedores($_POST["id_empresa"]);
+
+		if($method == "insert_venda") {
+			if(isset($_POST["id_vendedor"]))
+				echo empresa::insert_venda($_POST["id_empresa"],$_POST["json_itens"],$_POST["id_vendedor"]);
+			else
+				echo empresa::insert_venda($_POST["id_empresa"],$_POST["json_itens"]);
+		}
+		if($method == "confirmar_venda")
+			echo empresa::confirmar_venda($_POST["id_venda"]);
+		if($method == "select_vendas")
+			echo empresa::select_vendas($_POST["id_empresa"]);
+		if($method == "select_vendas_disponiveis")
+			echo empresa::select_vendas_disponiveis($_POST["id_vendedor"]);
 	}
 	else {
 

@@ -48,17 +48,17 @@
 				if($row = $query->fetch_assoc()) {
 					$id_login = $row["id_login"];
 					if($row["estado"] == 0) {
-						
-						$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
 						$query = $con->query("SELECT id_login,id_empresa,id_plano,nome FROM empresa WHERE id_login = $id_login");
 						if($return = $query->fetch_assoc()) {
+							$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
 							$return = json_encode($return);
 						}
 						else {
-							$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
-							$query = $con->query("SELECT id_login,id_vendedor,id_empresa,nome FROM empresa WHERE id_login = $id_login");
-							if($return = $query->fetch_assoc())
+							$query = $con->query("SELECT id_login,id_vendedor,id_empresa,nome FROM vendedor WHERE id_login = $id_login AND estado = 0");
+							if($return = $query->fetch_assoc()){
+								$query = $con->query("UPDATE login SET last = '$login_date' WHERE id_login = $id_login");
 								$return = json_encode($return);
+							}
 						}
 					}
 					else

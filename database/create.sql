@@ -55,8 +55,8 @@ CREATE TABLE produto (
   descricao TEXT NULL,
   imagem TEXT NULL,
   valor DECIMAL(9,2) NOT NULL,
-  quantidade DOUBLE NOT NULL DEFAULT 0,
-  quantidade DOUBLE NOT NULL DEFAULT 0,
+  quantidade DECIMAL(9,2) NOT NULL DEFAULT 0,
+  unidade_medida VARCHAR(20) NOT NULL DEFAULT "Unidade",
   estado INTEGER UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY(id_produto),
   FOREIGN KEY (id_empresa)REFERENCES empresa(id_empresa)
@@ -65,7 +65,7 @@ CREATE TABLE produto (
 CREATE TABLE entrada (
   id_entrada INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   id_produto INTEGER UNSIGNED NOT NULL,
-  quantidade DOUBLE NOT NULL,
+  quantidade DECIMAL(9,2) NOT NULL,
   PRIMARY KEY(id_entrada),
   FOREIGN KEY (id_produto)REFERENCES produto(id_produto)
 );
@@ -86,6 +86,7 @@ CREATE TABLE item (
   id_produto INTEGER UNSIGNED NOT NULL,
   id_venda INTEGER UNSIGNED NOT NULL,
   valor DECIMAL(9,2) NOT NULL,
+  quantidade DECIMAL(9,2) NOT NULL,
   PRIMARY KEY(id_item),
   FOREIGN KEY (id_produto)REFERENCES produto(id_produto),
   FOREIGN KEY (id_venda)REFERENCES venda(id_venda)

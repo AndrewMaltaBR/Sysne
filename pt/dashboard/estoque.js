@@ -11,6 +11,7 @@ $(function(){
 		$("#edit-produto-form input[name='nome']").attr("value",produto.nome);
 		$("#edit-produto-form input[name='descricao']").attr("value",produto.descricao);
 		$("#edit-produto-form input[name='valor']").attr("value",produto.valor);
+		$("#edit-produto-form input[name='unidade_medida']").attr("value",produto.unidade_medida);
 		$("#edit-produto-form img.preview").attr("src","../../assets/img/upload/"+produto.imagem);
 	});
 
